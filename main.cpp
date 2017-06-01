@@ -5,5 +5,6 @@ int main(){
     videostab.inputPath = "D:\\QTProjects\\opencvtry\\vid.mp4";
     videostab.outputPath = "D:\\QTProjects\\opencvtry\\stabvid.avi";
     videostab.imShow = true;
+    videostab.out = true;
     videostab.stabilize();
 }

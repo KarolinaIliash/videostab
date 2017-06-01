@@ -17,11 +17,8 @@ using namespace std;
 using namespace cv;
 using namespace cv::videostab;
 
-struct VideoStabilizer{
-
-    VideoStabilizer();
-    ~VideoStabilizer();
-
+class VideoStabilizer{
+public:
     bool imShow	= false;
     string inputPath;
     string outputPath;
@@ -34,6 +31,7 @@ struct VideoStabilizer{
     float trimRatio	= 0.1f;
     bool inclConstr = false;
     string borderMode = "replicate";
+    bool out = false;
 
     void stabilize();
 

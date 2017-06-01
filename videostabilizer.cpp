@@ -2,24 +2,25 @@
 
 
 MotionModel motionModel(const string &str){
-    if (str == "transl") return MM_TRANSLATION;
-    if (str == "transl_and_scale") return MM_TRANSLATION_AND_SCALE;
-    if (str == "rigid") return MM_RIGID;
-    if (str == "similarity") return MM_SIMILARITY;
-    if (str == "affine") return MM_AFFINE;
-    if (str == "homography") return MM_HOMOGRAPHY;
+    if (str == "transl")
+        return MM_TRANSLATION;
+    if (str == "transl_and_scale")
+        return MM_TRANSLATION_AND_SCALE;
+    if (str == "rigid")
+        return MM_RIGID;
+    if (str == "similarity")
+        return MM_SIMILARITY;
+    if (str == "affine")
+        return MM_AFFINE;
+    if (str == "homography")
+        return MM_HOMOGRAPHY;
     return MM_TRANSLATION;
 }
 
-VideoStabilizer::VideoStabilizer()
-{}
-
-VideoStabilizer::~VideoStabilizer(){}
 
 void VideoStabilizer::stabilize(){
-    if (inputPath.empty() || outputPath.empty())
-        return;
-    start();
+    if (!inputPath.empty())
+        start();
 }
 
 void VideoStabilizer::start(){
@@ -70,7 +71,7 @@ void VideoStabilizer::stabilize(IFrameSource *stabilizedFrames, double outputFps
     Mat stabilizedFrame;
         // for each stabilized frame
     while (!(stabilizedFrame = stabilizedFrames->nextFrame()).empty()){
-        if (!writer.isOpened())
+        if (!writer.isOpened() && out && !outputPath.empty())
             writer.open(outputPath, VideoWriter::fourcc('X','V','I','D'),
                         outputFps, stabilizedFrame.size());
             writer << stabilizedFrame;
